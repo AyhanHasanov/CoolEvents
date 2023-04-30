@@ -25,7 +25,7 @@ namespace CoolEvents.ViewModels.Users
 
         [DisplayName("User's role:")]
         [Required]
-        public string Role { get; set; }
+        public int RoleId { get; set; }
 
     }
 }

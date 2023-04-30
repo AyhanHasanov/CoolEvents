@@ -9,7 +9,7 @@ namespace CoolEvents.Data
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public string imageUrl { get; set; } //?????
+        public string? imageUrl { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

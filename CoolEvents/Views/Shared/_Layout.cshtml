@@ -15,37 +15,54 @@
     <link rel="stylesheet" href="~/CoolEvents.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="container header">
-        <h1 class="title">Cool Events :D</h1>
-        <div class="welcomeMsg">
-            <span>
-                Hello,
-                @(loggedUser == null ? "Annonymous" : loggedUser.Username)
-                @* @(loggedUser == null ? "" : $"({loggedUser.Role})")*@
-            </span>
+
+    <style>
+        .menu-container {
+            border-bottom: solid grey;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 3vh 4vw 5vh 4vw;
+            padding-bottom: 3vh;
+        }
+
+            .menu-container nav a {
+                text-decoration: none;
+                margin-left: 1.5vw;
+                font-weight: 500;
+            }
+    </style>
+    <div class="menu-container">
+        <div>
+            <h1>Cool Events :D</h1>
+            <div>
+                <span>
+                    Hello, @(loggedUser == null ? "Annonymous" : loggedUser.Username)
+                </span>
+            </div>
         </div>
-    </div>
-    <div class="container">
-        <ul class="menu">
-            <li><a href="/Home/Index">HOME</a></li>
+        <nav>
+            <a href="/Home/Index">HOME</a>
             @if (loggedUser != null)
             {
                 if (loggedUser.RoleId == 1)
                 {
-                    <li><a href="/Users/Index">USERS</a></li>
+                    <a href="/Users/Index">USERS</a>
                 }
 
-                <li><a href="/Tickets/Index">MY TICKETS</a></li>
-                <li><a href="/Home/Logout">LOGOUT</a></li>
-                <li><a href="/Events/Index">EVENTS</a></li>
+                <a href="/Events/Index">EVENTS</a>
+                <a href="/Tickets/Index">MY TICKETS</a>
+                <a href="/Home/Logout">LOGOUT</a>
             }
             else
             {
-                <li><a href="/Home/Login">LOGIN</a></li>
-                <li><a href="/Home/Register">REGISTER</a></li>
+                <a href="/Home/Login">LOGIN</a>
+                <a href="/Home/Register">REGISTER</a>
             }
-        </ul>
+        </nav>
     </div>
+
+
     <div class="container">
         @RenderBody()
     </div>

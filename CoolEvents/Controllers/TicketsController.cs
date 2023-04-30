@@ -34,40 +34,24 @@ namespace CoolEvents.Controllers
             {
                 case 1:
                     //admin
+                    var modelsAll = new List<TicketDetailsVM>();
 
+                    foreach (var item in _context.UserTickets)
+                    {
+                        TicketDetailsVM model = new TicketDetailsVM();
+                        model.UserId = item.UserId;
+                        model.TicketId = item.TicketId;
+                        int eventId = _context.Tickets.Where(t => t.Id.Equals(item.TicketId)).First().EventId;
+                        Event evnt = _context.Events.Where(e => e.Id.Equals(eventId)).First();
+                        model.EventName = evnt.Name;
+                        model.EventDescription = evnt.Description;
+                        model.EventDate = evnt.Date;
+                        model.User = _context.Users.Where(u => u.Id.Equals(item.UserId)).First();
+                        model.TicketCount = 1;
+                        modelsAll.Add(model);
+                    }
 
-                    //var ticketsAll = _context.UserTickets.Select(x => x.TicketId).ToList();
-
-                    //Dictionary<int, int> ticketCountsAll = new Dictionary<int, int>();
-
-                    //// key is ticketid, value is count of ticket taken
-                    //foreach (var ticketID in ticketsAll)
-                    //{
-                    //    if (!ticketCountsAll.ContainsKey(ticketID))
-                    //        ticketCountsAll.Add(ticketID, 1);
-                    //    else
-                    //        ticketCountsAll[ticketID] += 1;
-                    //}
-
-                    //List<TicketDetailsVM> modelsAll = new List<TicketDetailsVM>();
-                    //foreach (var pair in ticketCountsAll)
-                    //{
-                    //    TicketDetailsVM model = new TicketDetailsVM();
-                    //    int ticketID = pair.Key;
-                    //    int count = pair.Value;
-
-                    //    int eventIdOfTicket = _context.Tickets.Where(t => t.Id == ticketID).First().EventId;
-                    //    Event evnt = _context.Events.Where(e => e.Id == eventIdOfTicket).First();
-                    //    model.TicketId = ticketID;
-                    //    model.EventName = evnt.Name;
-                    //    model.EventDescription = evnt.Description;
-                    //    model.EventDate = evnt.Date;
-                    //    model.TicketCount = count;
-
-                    //    modelsAll.Add(model);
-                    //}
-
-                    //return View(modelsAll);
+                    return View(modelsAll);
 
                 case 2:
                 default:
@@ -120,6 +104,17 @@ namespace CoolEvents.Controllers
             {
                 _context.UserTickets.Remove(userTicket);
             }
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> RemoveTicketAsAdmin(int ticketId, int userId)
+        {
+            var userticket = _context.UserTickets.Where(ut => ut.UserId.Equals(userId) && ut.TicketId.Equals(ticketId)).First();
+
+            _context.UserTickets.Remove(userticket);
 
             await _context.SaveChangesAsync();
 

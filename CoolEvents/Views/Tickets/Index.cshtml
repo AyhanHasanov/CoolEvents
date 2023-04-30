@@ -25,6 +25,9 @@
                     @Html.DisplayNameFor(model => model.EventDate)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.TicketCount)
                 </th>
                 <th>
@@ -48,15 +51,17 @@
                         @Html.DisplayFor(modelItem => item.EventDate)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.User.FirstName)
+                        @Html.DisplayFor(modelItem => item.User.LastName)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.TicketCount)
                     </td>
                     <td>
-                        <a asp-controller="Tickets" asp-action="RemoveTicket" asp-route-ticketId="@item.TicketId">Remove</a>
+                        <a asp-controller="Tickets" asp-action="RemoveTicketAsAdmin" asp-route-ticketId="@item.TicketId" asp-route-userId="@item.UserId">Remove</a>
                     </td>
                 </tr>
             }
-
-
         </tbody>
     </table>
 }

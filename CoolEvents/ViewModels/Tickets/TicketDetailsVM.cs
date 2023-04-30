@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using CoolEvents.Data;
+using System.ComponentModel;
 
 namespace CoolEvents.ViewModels.Tickets
 {
@@ -17,5 +18,8 @@ namespace CoolEvents.ViewModels.Tickets
 
         [DisplayName("Count of tickets: ")]
         public int TicketCount { get; set; }
+
+        public int UserId { get; set; }
+        public User? User { get; set; }
     }
 }

@@ -61,7 +61,6 @@ namespace CoolEvents.Controllers
             model.Password = item.Password;
             model.FirstName = item.FirstName;
             model.LastName = item.LastName;
-            
             return View(model);
         }
 
@@ -77,7 +76,7 @@ namespace CoolEvents.Controllers
             item.Password = model.Password;
             item.FirstName = model.FirstName;
             item.LastName = model.LastName;
-
+            item.RoleId = 2;
             _context.Users.Update(item);
             _context.SaveChanges();
 

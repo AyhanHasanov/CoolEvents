@@ -50,6 +50,24 @@ namespace CoolEvents.Data
                .WithMany(u => u.UserTickets)
                .HasForeignKey(ut => ut.TicketId);
 
+            modelBuilder.Entity<Event>().HasData(
+                new Event()
+                {
+                    Id = 1,
+                    Name = "Lion Heart Utopia",
+                    Description = "Състезанията по крос-триатлон на Лъвско сърце са многокомпонентни. Масов старт, навигация в открити води, смяна на спортовете, техника за преминаване на вариращи терени, стръмно спускане по нестабилен терен, коловози, бодили, слънце и насекоми. ",
+                    Date = DateTime.Parse("28/05/2023"),
+                    imageUrl = @"https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                }, 
+                new Event()
+                {
+                    Id = 2,
+                    Name = "Bulgarian Rose Event",
+                    Description = "See the most beautiful bulgarian roses! aaaaaaaaaaaaa",
+                    Date = DateTime.Parse("21/06/2023")
+                }
+                );
+
         }
     }
 }

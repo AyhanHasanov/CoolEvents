@@ -5,39 +5,25 @@
 }
 
 <fieldset>
-    <legend>LOGIN</legend>
-    <form action="/Home/Login" method="post">
-        <div class="grid">
-            <div class="row">
-                <div class="col-1">@Html.LabelFor(m => m.Username)</div>
-                <div class="col-2">
-                    @Html.TextBoxFor(m => m.Username)
-                </div>
-                <div class="col-2">
-                    @Html.ValidationMessageFor(m => m.Username)
-                </div>
+    <div class="login-container">
+        <form action="/Home/Login" method="post">
+
+            <h3>LOGIN: </h3>
+            <div class="login-field">
+                <input asp-for="Username" class="field" placeholder="Username">
+                <span class="field-validation" asp-validation-for="Username"></span>
             </div>
-            <div class="row">
-                <div class="col-1">@Html.LabelFor(m => m.Password)</div>
-                <div class="col-2">
-                    @Html.PasswordFor(m => m.Password)
-                </div>
-                <div class="col-2">
-                    @Html.ValidationMessageFor(m => m.Password)
-                </div>
+            <div class="login-field">
+                <input asp-for="Password" type="password" class="field" placeholder="Password">
+                <span class="field-validation" asp-validation-for="Password"></span>
             </div>
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-2">
-                    @Html.ValidationMessage("authError", new { @style = "right" })
-                </div>
+            <div class="login-field">
+                @Html.ValidationMessage("authError", new { @style = "right" })
             </div>
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-2">
-                    <input type="submit" class="right" value="Login" />
-                </div>
+
+            <div class="login-field">
+                <input type="submit" class="submit-bttn" value="Login" />
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </fieldset>

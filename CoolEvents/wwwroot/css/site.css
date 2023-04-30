@@ -11,8 +11,61 @@ html {
 html {
   position: relative;
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: sans-serif;
+}
+
+
+.login-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+    .login-container > form {
+        box-shadow: 0px 0px 20px 11px #e3e3e3;
+        padding: 2vw;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .login-container form .field {
+        padding: 10px;
+        border: 3px solid rgb(0, 0, 0, 0.15);
+        border-radius: 4px;
+    }
+
+.field-validation {
+    color: red;
+    font-size: small;
+    font-weight: 700;
+    margin-top: 3px;
+}
+
+.login-container .login-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30vw;
+    margin-top: 2vh;
+}
+
+.login-container form > input {
+    margin-top: 2vh;
+}
+
+form .submit-bttn {
+    height: 6vh;
+    background: #ff3800;
+    border: 3px solid rgb(0, 0, 0, 0.08);
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
