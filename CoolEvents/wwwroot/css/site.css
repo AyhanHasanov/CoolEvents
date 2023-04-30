@@ -16,7 +16,6 @@ html {
 
 body {
     margin-bottom: 60px;
-    font-family: sans-serif;
 }
 
 
@@ -61,7 +60,7 @@ body {
 
 form .submit-bttn {
     height: 6vh;
-    background: #ff3800;
+    background-color: dodgerblue;
     border: 3px solid rgb(0, 0, 0, 0.08);
     border-radius: 5px;
     color: white;

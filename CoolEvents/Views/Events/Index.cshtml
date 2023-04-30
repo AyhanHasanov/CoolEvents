@@ -61,7 +61,7 @@
                 @if (loggedUser != null)
                 {
                     <td>
-                        <a asp-action="AddTicket" asp-route-eventId="@item.Id">Add</a>
+                        <a asp-action="AddTicket" asp-route-eventId="@item.Id">Reserve ticket</a>
                     </td>
                     if (loggedUser.RoleId == 1)
                     {

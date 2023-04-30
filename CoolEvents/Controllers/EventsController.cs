@@ -167,6 +167,10 @@ namespace CoolEvents.Controllers
                 }
 
                 var evnt = await _context.Events.FindAsync(id);
+                if (evnt == null)
+                {
+                    return NotFound();
+                }
 
                 // map
                 var model = new EventEditVM();
@@ -175,12 +179,6 @@ namespace CoolEvents.Controllers
                 model.Description = evnt.Description;
                 model.Date = evnt.Date;
                 model.ImageUrl = evnt.imageUrl;
-
-                if (evnt == null)
-                {
-                    return NotFound();
-                }
-
                 return View(model);
             }
             return View("NoPermission");
