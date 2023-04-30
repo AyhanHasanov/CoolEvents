@@ -1,0 +1,23 @@
+﻿@using CoolEvents.Data
+@using CoolEvents.ExtensionMethods
+@{
+    ViewData["Title"] = "Home Page";
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @if (loggedUser != null)
+    {
+        <h3>@loggedUser.FirstName @loggedUser.LastName</h3>
+        <div class="info-container">
+            @if (loggedUser.RoleId == 1)
+            {
+                <p>Number of users: @ViewBag.CountOfUsers</p>
+                <p>Number of events: @ViewBag.CountOfEvents</p>
+                <p>Number of reserved tickets: @ViewBag.CountOfTickets</p>
+            }
+        </div>
+    }
+
+</div>

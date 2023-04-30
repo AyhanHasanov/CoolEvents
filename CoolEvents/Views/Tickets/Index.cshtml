@@ -1,0 +1,109 @@
+﻿@using CoolEvents.Data
+@using CoolEvents.ExtensionMethods
+@model IEnumerable<CoolEvents.ViewModels.Tickets.TicketDetailsVM>
+
+@{
+    ViewData["Title"] = "Index";
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
+}
+
+<h1>Index</h1>
+
+@if (loggedUser.RoleId == 1) //is admin
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TicketCount)
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <a asp-action="RemoveAllFromAllUsers">Remove All Tickets From All Users</a>
+        <p><b>NOTE:</b> This action deletes all tickets from all users. This proccess is irreversible</p>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketCount)
+                    </td>
+                    <td>
+                        <a asp-controller="Tickets" asp-action="RemoveTicket" asp-route-ticketId="@item.TicketId">Remove</a>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EventDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TicketCount)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <a asp-action="RemoveAll">Remove All Tickets</a>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TicketCount)
+                    </td>
+                    <td>
+                        <a asp-controller="Tickets" asp-action="RemoveTicket" asp-route-ticketId="@item.TicketId">Remove</a>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+}
